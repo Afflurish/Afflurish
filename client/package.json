@@ -1,0 +1,43 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "reset:npm": "rm -rf node_modules/ && yarn install"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "10.4.14",
+    "chart.js": "^4.2.1",
+    "dayjs": "^1.11.7",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "flowbite": "^1.6.5",
+    "flowbite-react": "^0.4.3",
+    "framer-motion": "^10.12.4",
+    "next": "13.3.0",
+    "postcss": "8.4.22",
+    "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "18.2.0",
+    "rebass": "^4.0.7",
+    "reflexbox": "^4.0.6",
+    "tailwindcss": "3.3.1",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/reflexbox": "^4.0.5"
+  }
+}

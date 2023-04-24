@@ -1,0 +1,62 @@
+import Head from 'next/head';
+import { Flex, Box } from 'reflexbox';
+
+import { PageHeader, RecapCard, Card, Table, EditAction } from '../components/Common';
+
+function Dashboard() {
+
+    return(
+        <Flex flexDirection="column">
+            <Head>
+                <title>Dashboard</title>
+            </Head>
+            <PageHeader 
+                title="Dashboard" 
+                paths={[{
+                    title: "Dashboard",
+                    path: "/dashboard"
+                }]} 
+            />
+            <Flex className="gap-6 py-4" justifyContent="center" flexWrap="wrap">
+                <Box className="md:flex-1 w-full">
+                    <RecapCard title="Total Spending" data={(1544).toLocaleString()} />
+                </Box>
+                <Box className="md:flex-1 w-full">
+                    <RecapCard title="Budget Spending" data={(827).toLocaleString()} />
+                </Box>
+                <Box className="md:flex-1 w-full">
+                    <RecapCard title="Total Spending" data={(1544).toLocaleString()} />
+                </Box>
+            </Flex>
+            <Flex className="gap-6 py-4" justifyContent="center" flexWrap="wrap">
+                <Box className="md:flex-1 w-full">
+                    <Table
+                        title="Spending"
+                        subtitle="Overall Spending This Month"
+                        headers={["Amount Spent", "Date", "Category", " "]}
+                        createAction
+                        data={[
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />],
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />],
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />],
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />]
+                        ]}
+                    />
+                </Box>
+                <Box className="md:flex-1 w-full">
+                    <Table
+                        headers={["Amount Spent", "Date", "Category", " "]}
+                        data={[
+                            [1200, "3/17/23", "Shopping", ""],
+                            [1200, "3/17/23", "Shopping", ""],
+                            [1200, "3/17/23", "Shopping", ""],
+                            [1200, "3/17/23", "Shopping", ""]
+                        ]}
+                    />
+                </Box>
+            </Flex>
+        </Flex>
+    );
+};
+
+export default Dashboard;
