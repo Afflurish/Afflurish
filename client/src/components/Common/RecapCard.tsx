@@ -14,6 +14,7 @@ import { faker } from '@faker-js/faker';
 
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
 
 export interface RecapCard {
     title: string,
@@ -99,7 +100,7 @@ function RecapCard({ title, data }: RecapCard) {
             </Flex>
             <Flex>
                 <Box>
-                    <FontAwesomeIcon icon="arrow-trend-up" className="text-green-600 mr-2" />
+                    <FontAwesomeIcon icon={faArrowTrendUp} className="text-green-600 mr-2" />
                 </Box>
                 <Box>
                     <h1 className="text-green-600 mr-2">2.5%</h1>

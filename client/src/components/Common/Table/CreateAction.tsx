@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 export interface CreateActionProps {
     onCreate?: React.MouseEventHandler
@@ -14,7 +15,7 @@ function CreateAction({ onCreate }: CreateActionProps) {
     return(
         <div className="pl-2">
             <div className="group hover:bg-white rounded-full" onClick={onCreate}>
-                <FontAwesomeIcon className={`text-2xl order-last rounded-full z-10 ${hoverClass}`} icon="circle-plus" />
+                <FontAwesomeIcon className={`text-2xl order-last rounded-full z-10 ${hoverClass}`} icon={faCirclePlus} />
             </div>
         </div>
     );

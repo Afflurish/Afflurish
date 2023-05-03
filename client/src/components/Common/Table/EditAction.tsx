@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 export interface EditActionProps {
     onEdit?: React.MouseEventHandler
@@ -17,7 +18,7 @@ function EditAction({ onEdit }: EditActionProps) {
             `} 
             onClick={onEdit}
         >
-            <FontAwesomeIcon icon="pen" />
+            <FontAwesomeIcon icon={faPen} />
         </div>
     );
 };
