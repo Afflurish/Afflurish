@@ -1,36 +1,41 @@
 import { Route } from '../../types/routes';
-// import { icon as FontAwesomeIcon } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+    faGaugeHigh, 
+    faChartSimple,
+    faFileInvoiceDollar,
+    faMoneyBill,
+    faCogs
+} from '@fortawesome/free-solid-svg-icons';
 
 const _DashboardRoutes: Route[] = [
     {
         title: "Dashboard",
         path: "/dashboard",
-        faIcon: "gauge-high",
+        faIcon: faGaugeHigh,
         displayNav: true
     },
     {
         title: "Analytics",
         path: "/analytics",
-        faIcon: "chart-simple",
+        faIcon: faChartSimple,
         displayNav: true
     },
     {
         title: "Expenses",
         path: "/expenses",
-        faIcon: "file-invoice-dollar",
+        faIcon: faFileInvoiceDollar,
         displayNav: true
     },
     {
         title: "Spending",
         path: "/spending",
-        faIcon: "money-bill",
+        faIcon: faMoneyBill,
         displayNav: true
     },
     {
         title: "Settings",
         path: "/settings",
-        faIcon: "cogs",
+        faIcon: faCogs,
         displayNav: true
     },
 ];
