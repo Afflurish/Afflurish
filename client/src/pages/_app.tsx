@@ -2,29 +2,13 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 
 import React from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faGaugeHigh, faFileInvoiceDollar, faMoneyBill, faCogs, faBell, faCirclePlus, faPen, faChartSimple, faArrowTrendUp, faArrowTrendDown } from '@fortawesome/free-solid-svg-icons';
+import { AnimatePresence } from 'framer-motion';
 
 import Navigation from '../navigation';
 
-library.add(
-    fab, 
-    faGaugeHigh, 
-    faFileInvoiceDollar, 
-    faMoneyBill, 
-    faCogs, 
-    faBell, 
-    faCirclePlus, 
-    faPen, 
-    faChartSimple,
-    faArrowTrendUp,
-    faArrowTrendDown
-);
-
 function App({ Component, pageProps }: AppProps) {
     return(
-        <React.Fragment>
+        <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
             <style global jsx>
                 {`
                     html,
@@ -34,11 +18,12 @@ function App({ Component, pageProps }: AppProps) {
                     div#__next > div {
                         height: 100%;
                         width: 100%;
+                        overflow-x: hidden;
                     }
                 `}
             </style>
             <Navigation Component={Component} {...pageProps} />
-        </React.Fragment>
+        </AnimatePresence>
     );
 };
 
