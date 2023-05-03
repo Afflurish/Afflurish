@@ -1,11 +1,18 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Navbar, Button } from 'flowbite-react';
 import { NextRouter } from 'next/router';
+import { Navbar } from 'flowbite-react';
+import { Flex, Box } from 'reflexbox';
+import { AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-import { Route } from '../types/routes';
 import { _HomeRoutes } from './_Routes';
 
+import { MobileNav, GoToDashboardButton } from '../components/Common';
+
 import { IMAGE_RESOURCES } from '../constants';
+import { navigation } from '../utils';
 
 interface NavBarProps {
     router: NextRouter
@@ -13,48 +20,63 @@ interface NavBarProps {
 
 function NavBar({ router }: NavBarProps) {
 
-    const isActiveRoute = (route: Route): boolean => {
-        const re = /^.+?(?=\/|$)/g;
-        const matchRes = router.pathname.match(re)![0];
-
-        return matchRes === route.path;
-    };
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     const renderRoutes = () => {
-        const Routes = _HomeRoutes.filter((route) => route.displayNav).map((route, index) => (
-            <Link href={route.path} key={`nav-link-${index}`}>
-                {route.title}
-            </Link>
-        ));
+        const Routes = _HomeRoutes.filter((route) => route.displayNav).map((route, index) => {
+            const isActive = navigation.isActiveRoute(router.pathname, route);
+            return(
+                <Link className={`${isActive && "font-bold"} mx-4`} href={route.path} key={`nav-link-${index}-${route.title}`}>
+                    {route.title}
+                </Link>
+            );
+        });
 
         return Routes;
     };
 
     return(
-        <Navbar fluid={true} rounded={true}>
-            <Navbar.Brand href="https://afflurish.com/">
-                <img
-                    src={IMAGE_RESOURCES.AFFLURISH_ICON}
-                    className="mr-1 h-10 sm:h-9"
-                    alt="Flowbite Logo"
-                />
-                <img
-                    src={IMAGE_RESOURCES.AFFLURISH_TEXTILE_WHITE}
-                    className="h-5 sm:h-9 mt-1"
-                    alt="Flowbite Logo"
-                />
-            </Navbar.Brand>
-            <Navbar.Collapse>
-                {renderRoutes()}
-            </Navbar.Collapse>
-            <div className="flex md:order-2">
-                <Link href="/dashboard">
-                    <Button gradientDuoTone="greenToBlue" size="sm">
-                        Go To Dashboard
-                    </Button>
-                </Link>
-            </div>
-        </Navbar>
+        <div className="w-full">
+            <Navbar className="first:relative first:z-50" fluid={true} rounded={true}>
+                <Flex className="w-full">
+                    <Box flex="1 1 auto">
+                        <Link href="/" className="flex items-center">
+                            <img
+                                src={IMAGE_RESOURCES.AFFLURISH_ICON}
+                                className="h-10"
+                                alt="Afflurish Logo"
+                            />
+                            <img
+                                src={IMAGE_RESOURCES.AFFLURISH_TEXTILE_WHITE}
+                                className="h-5 mt-1"
+                                alt="Afflurish Text Logo"
+                            />
+                        </Link>
+                    </Box>
+                    <Box flex="1 1 auto" className="hidden md:flex md:justify-center md:items-center">
+                        {renderRoutes()}
+                    </Box>
+                    <Box flex="1 1 auto" className="flex items-center justify-end">
+                        <div className="hidden md:block">
+                            <GoToDashboardButton />
+                        </div>
+                        <div className="ml-4 mr-2 flex md:hidden justify-center content-center items-center" onClick={() => setIsMobileOpen(!isMobileOpen)}>
+                            <FontAwesomeIcon className="text-2xl" icon={faBars} />
+                        </div>
+                    </Box>
+                </Flex>
+            </Navbar>
+            <AnimatePresence mode="wait">
+                {
+                    isMobileOpen && 
+                    <MobileNav router={router} routes={_HomeRoutes} isOpen={isMobileOpen} setIsOpen={setIsMobileOpen}>
+                        <div className="ml-5 mt-16">
+                            <GoToDashboardButton />
+                        </div>
+                    </MobileNav>
+                }
+            </AnimatePresence>
+        </div>
     );
 };
 
