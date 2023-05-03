@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { Sidebar } from 'flowbite-react';
 import { NextRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Route } from '../types/routes';
+
 import { _DashboardRoutes } from './_Routes';
+import { SideNavRoute } from '../components/Common';
 
 import { IMAGE_RESOURCES } from '../constants';
 
@@ -14,47 +15,22 @@ interface SideNavProps {
 
 function SideNav({ router }: SideNavProps) {
 
-    const isActiveRoute = (route: Route): boolean => {
-        const re = /^.+?(?=\/|$)/g;
-        const matchRes = router.pathname.match(re)![0];
-
-        return matchRes === route.path;
-    };
-
     const renderRoutes = () => {
         const Routes = _DashboardRoutes.filter((route) => route.displayNav).map((route, index) => {
-            const isActive = isActiveRoute(route);
-            const hoverClass = `
-                hover:bg-neutral-800 hover:transition-all
-            `;
-            const activeClass = `
-                bg-neutral-600/20
-            `;
-            const activeTextClass = `
-                text-white font-semibold
-            `;
             return(
-                <Link className={`group rounded flex py-2 my-2 ${hoverClass} ${isActive && activeClass}`} href={route.path} key={`sidebar-link-${index}`}>
-                    <div className={`text-md text-neutral-400 flex ml-2 group-hover:text-white ${isActive && activeTextClass}`}>
-                        {
-                            route.faIcon && 
-                            <div className="w-12 text-lg text-center">
-                                <FontAwesomeIcon icon={route.faIcon} />
-                            </div>
-                        }
-                        <span className="mt-0.5">
-                            {route.title}
-                        </span>
-                    </div>
-                </Link>
+                <SideNavRoute 
+                    route={route} 
+                    router={router} 
+                    key={`sidebar-link-${index}-${route.title}`}
+                />
             );
         });
 
         return(
             <div className="flex justify-center">
                 <div className="w-52">
-                <h1 className="ml-5 text-neutral-600 uppercase text-sm">Menu</h1>
-                {Routes}
+                    <h1 className="ml-5 text-neutral-600 uppercase text-sm">Menu</h1>
+                    {Routes}
                 </div>
             </div>
         );
