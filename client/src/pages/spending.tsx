@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import { Flex } from 'reflexbox';
 
-import { PageHeader } from '../components/Common';
+import { Layout, PageHeader } from '../components/Common';
 
 function Spending() {
     return(
-        <Flex>
+        <Layout>
             <Head>
                 <title>Spending</title>
             </Head>
@@ -16,7 +15,7 @@ function Spending() {
                     path: "/spending"
                 }]} 
             />
-        </Flex>
+        </Layout>
     );
 };
 

@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import { Flex } from 'reflexbox';
 
-import { PageHeader } from '../components/Common';
+import { Layout, PageHeader } from '../components/Common';
 
 function Analytics() {
     return(
-        <Flex>
+        <Layout>
             <Head>
                 <title>Analytics</title>
             </Head>
@@ -16,7 +15,7 @@ function Analytics() {
                     path: "/analytics"
                 }]} 
             />
-        </Flex>
+        </Layout>
     );
 };
 

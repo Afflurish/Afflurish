@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import { Flex, Box } from 'reflexbox';
 
-import { PageHeader, RecapCard, Card, Table, EditAction } from '../components/Common';
+import { Layout, PageHeader, RecapCard, Card, Table, EditAction } from '../components/Common';
 
 function Dashboard() {
 
     return(
-        <Flex flexDirection="column">
+        <Layout>
             <Head>
                 <title>Dashboard</title>
             </Head>
@@ -55,7 +55,7 @@ function Dashboard() {
                     />
                 </Box>
             </Flex>
-        </Flex>
+        </Layout>
     );
 };
 
