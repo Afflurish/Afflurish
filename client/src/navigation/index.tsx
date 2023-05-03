@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
 import { Flex, Box } from 'reflexbox';
 
-import { Container, Col } from '../components/Common';
-
 import NavBar from './NavBar';
 import SideNav from './SideNav';
 import TopNav from './TopNav';
@@ -17,19 +15,21 @@ function Navigation({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
     const renderHomeNav = () => (
-        <React.Fragment>
-            <NavBar router={router} />
-            <Component {...pageProps} />
-        </React.Fragment>
+        <Flex>
+            <Box flex="1 1 auto">
+                <NavBar router={router} />
+                <Component {...pageProps} />
+            </Box>
+        </Flex>
     );
 
     const renderDashboardNav = () => (
         <Flex>
-            <Box className="hidden lg:block">
+            <Box className="hidden lg:block z-10">
                 <SideNav router={router} />
             </Box>
-            <Box flex="1 1 auto">
-                <TopNav />
+            <Box flex="1 1 auto" className="z-0">
+                <TopNav router={router} />
                 <div className="p-6 sm:p-12">
                     <Component {...pageProps} />
                 </div>
