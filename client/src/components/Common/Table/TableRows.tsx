@@ -7,11 +7,17 @@ export interface TableRowProps {
 function TableRows({ data }: TableRowProps): JSX.Element {
 
     const renderRow = (rowData: TableData[]) => {
-        const Row = rowData.map((row, index) => (
-            <div className="table-cell py-3 px-4 border-b-2 border-neutral-600" key={`table-row-${index}`}>
-                <p>{row}</p>
-            </div>
-        ));
+        const Row = rowData.map((row, index) => {
+            return(
+                <div className="table-cell py-3 px-4 border-b-2 border-neutral-600" key={`table-row-${index}`}>
+                    {
+                        typeof row === "object" ?
+                        row :
+                        <p>{row}</p>
+                    }
+                </div>
+            );
+        });
 
         return Row;
     };
