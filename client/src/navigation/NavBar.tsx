@@ -7,18 +7,21 @@ import { AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+import type { UserState } from '../store/authSlice';
+
 import { _HomeRoutes } from './_Routes';
 
-import { MobileNav, GoToDashboardButton } from '../components/Common';
+import { MobileNav, GoToDashboardButton, Button } from '../components/Common';
 
 import { IMAGE_RESOURCES } from '../constants';
 import { navigation } from '../utils';
 
 interface NavBarProps {
+    user?: UserState,
     router: NextRouter
 };
 
-function NavBar({ router }: NavBarProps) {
+function NavBar({ user, router }: NavBarProps) {
 
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -35,10 +38,27 @@ function NavBar({ router }: NavBarProps) {
         return Routes;
     };
 
+    const renderLoginButton = () => {
+        return(
+            <Flex>
+                <Link href="/login">
+                    <Button className="mx-1 w-24" gradientDuoTone="greenToBlue">
+                        Login
+                    </Button>
+                </Link>
+                <Link href="/signup">
+                    <Button outline className="mx-1 w-24" gradientDuoTone="greenToBlue">
+                        Signup
+                    </Button>
+                </Link>
+            </Flex>
+        );
+    };
+
     return(
         <div className="w-full">
-            <Navbar className="first:relative first:z-50" fluid={true} rounded={true}>
-                <Flex className="w-full">
+            <Navbar theme={{ base: "border-gray-200 bg-neutral-800 px-2 py-2.5 sm:px-4 rounded first:relative first:z-50" }} fluid={true} rounded={true}>
+                <Flex className="w-full" alignItems="center" alignContent="center">
                     <Box flex="1 1 auto">
                         <Link href="/" className="flex items-center">
                             <img
@@ -58,7 +78,7 @@ function NavBar({ router }: NavBarProps) {
                     </Box>
                     <Box flex="1 1 auto" className="flex items-center justify-end">
                         <div className="hidden md:block">
-                            <GoToDashboardButton />
+                            {user ? <GoToDashboardButton /> : renderLoginButton()}
                         </div>
                         <div className="ml-4 mr-2 flex md:hidden justify-center content-center items-center" onClick={() => setIsMobileOpen(!isMobileOpen)}>
                             <FontAwesomeIcon className="text-2xl" icon={faBars} />
