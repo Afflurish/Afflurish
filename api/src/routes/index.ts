@@ -1,1 +1,1 @@
-export { default as placeholderRoutes } from './placeholder/index.js';
+export { default as authRoutes } from './auth/index.js';
