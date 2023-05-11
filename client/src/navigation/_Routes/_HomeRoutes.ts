@@ -1,4 +1,4 @@
-import { Route } from '../../types/routes';
+import type { Route } from '../../types/routes';
 
 const _HomeRoutes: Route[] = [
     {
@@ -20,6 +20,14 @@ const _HomeRoutes: Route[] = [
         title: "Contact",
         path: "/contact",
         displayNav: true
+    },
+    {
+        title: "Login",
+        path: "/login"
+    },
+    {
+        title: "Signup",
+        path: "/signup"
     }
 ];
 
