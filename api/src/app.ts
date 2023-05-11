@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
-import { placeholderRoutes } from './routes/index.js';
+import { authRoutes } from './routes/index.js';
 
 function initializeApp(): Application {
     const app = express();
@@ -15,7 +15,7 @@ function initializeApp(): Application {
     app.set("trust proxy", "loopback");
 
     /* Routes */
-    app.use("/placeholder", placeholderRoutes);
+    app.use("/auth", authRoutes);
 
     return app;
 };
