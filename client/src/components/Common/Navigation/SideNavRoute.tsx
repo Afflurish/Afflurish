@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { NextRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Route } from '../../../types/routes';
+import type { Route } from '../../../types/routes';
 
 import { navigation } from '../../../utils';
 
