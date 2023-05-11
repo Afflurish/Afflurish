@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { Sidebar } from 'flowbite-react';
 import { NextRouter } from 'next/router';
 
-import { Route } from '../types/routes';
-
 import { _DashboardRoutes } from './_Routes';
 import { SideNavRoute } from '../components/Common';
 
