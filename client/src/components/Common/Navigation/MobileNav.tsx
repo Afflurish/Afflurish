@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { NextRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-import { Route } from '../../../types/routes';
+import type { Route } from '../../../types/routes';
 import SideNavRoute from './SideNavRoute';
 
 export interface MobileNavProps {
@@ -41,7 +41,7 @@ function MobileNav({ router, routes, isOpen, setIsOpen, children }: PropsWithChi
     };
 
     return(
-        <motion.div className="z-10 absolute bg-neutral-800 w-screen h-screen" initial={initial} animate={animate} exit={exit} transition={transition}>
+        <motion.div key="mobile-nav" className="z-10 absolute bg-neutral-800 w-screen h-screen" initial={initial} animate={animate} exit={exit} transition={transition}>
             {renderRoutes()}
             {children}
         </motion.div>
