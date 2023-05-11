@@ -1,4 +1,4 @@
-import { Route } from '../../types/routes';
+import type { Route } from '../../types/routes';
 import { 
     faGaugeHigh, 
     faChartSimple,
