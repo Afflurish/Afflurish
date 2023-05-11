@@ -4,7 +4,7 @@ import { Layout, PageHeader } from '../components/Common';
 
 function Analytics() {
     return(
-        <Layout>
+        <Layout animationKey="analytics-page">
             <Head>
                 <title>Analytics</title>
             </Head>

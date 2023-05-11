@@ -4,7 +4,7 @@ import { Layout, PageHeader } from '../components/Common';
 
 function Expenses() {
     return(
-        <Layout>
+        <Layout animationKey="expenses-page">
             <Head>
                 <title>Expenses</title>
             </Head>
