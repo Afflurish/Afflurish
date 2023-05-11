@@ -4,7 +4,7 @@ import { Layout, PageHeader } from '../components/Common';
 
 function Spending() {
     return(
-        <Layout>
+        <Layout animationKey="spending-page">
             <Head>
                 <title>Spending</title>
             </Head>

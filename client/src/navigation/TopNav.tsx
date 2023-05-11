@@ -5,20 +5,33 @@ import { Navbar, Dropdown, Avatar } from 'flowbite-react';
 import { AnimatePresence } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBell } from '@fortawesome/free-solid-svg-icons';
+
+/* Redux */
+import { store } from '../store';
+import { authActions } from '../store/actions';
+
+import type { UserState } from '../store/authSlice';
 
 import { MobileNav } from '../components/Common';
 
 import { _DashboardRoutes } from './_Routes';
 import { IMAGE_RESOURCES } from '../constants';
 
+
 export interface TopNavProps {
+    user?: UserState,
     router: NextRouter
 };
 
 function TopNav({ router }: TopNavProps) {
 
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    const handleLogout = () => {
+        store.dispatch(authActions.clearAuthUser());
+        router.push("/");
+    };
 
     return(
         <div className="w-full">
@@ -35,7 +48,7 @@ function TopNav({ router }: TopNavProps) {
                     </Navbar.Brand>
                     <div className="flex md:order-2 z-50">
                         <div className="mr-5 text-xl my-auto text-neutral-800">
-                            <FontAwesomeIcon icon="bell" />
+                            <FontAwesomeIcon icon={faBell} />
                         </div>
                         <Dropdown
                             arrowIcon={false}
@@ -59,7 +72,7 @@ function TopNav({ router }: TopNavProps) {
                             Earnings
                         </Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout}>
                             Sign out
                         </Dropdown.Item>
                         </Dropdown>

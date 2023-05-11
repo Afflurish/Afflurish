@@ -1,4 +1,4 @@
-import { Route } from '../types/routes';
+import type { Route } from '../types/routes';
 
 export function isActiveRoute(currentPathname: string, route: Route): boolean {
     const re = /^.+?(?=\/|$)/g;

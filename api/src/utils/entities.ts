@@ -1,4 +1,6 @@
 import { BaseEntity, EntityTarget, DeepPartial, FindOneOptions, FindManyOptions, QueryFailedError } from 'typeorm';
+import { DatabaseError } from 'pg-protocol';
+
 import AppDataSource from '../db/dataSource.js';
 
 import * as promises from './promises.js';
@@ -9,6 +11,7 @@ import { DEFAULTS, ERROR_MESSAGES } from '../constants/index.js';
 type Target<T> = EntityTarget<T>;
 type Data<T> = DeepPartial<T>;
 
+/* CRUD Methods */
 export async function count<T extends BaseEntity>(entity: Target<T>, findOptions?: FindManyOptions<T>): Promise<HandleReturn<number>> {
     const repository = AppDataSource.getRepository(entity);
 
@@ -212,4 +215,23 @@ export async function save<T extends BaseEntity>(entity: Target<T>, data: Data<T
 
 export async function update<T extends BaseEntity>(entity: Target<T>, data: Data<T>): OperationReturn<T> {
     return await save<T>(entity, data);
+};
+
+/* Error Handling */
+export function isQueryFailedError(err: Error | QueryFailedError): boolean {
+    if(err instanceof QueryFailedError) {
+        return true;
+    }
+
+    return false;
+}; 
+
+export function isDuplicateKeyError(err: QueryFailedError): boolean {
+    const error = err.driverError as DatabaseError;
+
+    if(error.code === "23505") {
+        return true;
+    }
+
+    return false;
 };

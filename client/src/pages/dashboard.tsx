@@ -6,7 +6,7 @@ import { Layout, PageHeader, RecapCard, Card, Table, EditAction } from '../compo
 function Dashboard() {
 
     return(
-        <Layout>
+        <Layout animationKey="dashboard-page">
             <Head>
                 <title>Dashboard</title>
             </Head>
@@ -36,10 +36,10 @@ function Dashboard() {
                         headers={["Amount Spent", "Date", "Category", " "]}
                         createAction
                         data={[
-                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />],
-                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />],
-                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />],
-                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction />]
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction key={`edit-action-1`} />],
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction key={`edit-action-2`} />],
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction key={`edit-action-3`} />],
+                            ["$" + (1200).toLocaleString(), "3/17/23", "Shopping", <EditAction key={`edit-action-4`} />]
                         ]}
                     />
                 </Box>
