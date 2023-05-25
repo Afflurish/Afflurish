@@ -8,7 +8,7 @@ import Navigation from '../navigation';
 
 function App({ Component, pageProps }: AppProps) {
     return(
-        <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+        <AnimatePresence key="app-ap" mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
             <style global jsx>
                 {`
                     html,
