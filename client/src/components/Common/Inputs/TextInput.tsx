@@ -10,7 +10,7 @@ export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
     errorMessage?: string
 };
 
-function TextInput({ id="", className="", type, icon, iconRight, iconClassName="", errorMessage, ...rest }: TextInputProps) {
+function TextInput({ id="", className="", type, label, icon, iconRight, iconClassName="", errorMessage, ...rest }: TextInputProps) {
 
     const baseInputClassName = `
         block w-full border 
@@ -31,13 +31,13 @@ function TextInput({ id="", className="", type, icon, iconRight, iconClassName="
     `;
 
     const renderIcon = (faIcon: IconProp) => {
-        const baseIconClassName = `
+        const iconContainerClassName = `
             pointer-events-none absolute flex items-center p-3
             ${iconRight ? "inset-y-0 right-0 pr-3" : "inset-y-0 left-0 pl-3"}
         `;
 
         return(
-            <div className={`${baseIconClassName}`}>
+            <div className={`${iconContainerClassName}`}>
                 <FontAwesomeIcon className={`${iconClassName}`} icon={faIcon} />
             </div>
         );
@@ -49,9 +49,16 @@ function TextInput({ id="", className="", type, icon, iconRight, iconClassName="
         );
     };
 
+    const renderLabel = () => (
+        <div>
+            <p className="text-xs font-semibold">{label}</p>
+        </div>
+    );
+
     return(
         <React.Fragment>
-            <div className="relative w-full">
+            {label && renderLabel()}
+            <div className={`relative w-full ${label && "mt-1.5"}`}>
                 {icon && renderIcon(icon)}
                 <input
                     id={id}
