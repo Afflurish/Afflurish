@@ -21,7 +21,7 @@ async function signup(req: Request, res: Response, next: NextFunction) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [user, err] = await entities.insert<User>(User, {
-        email,
+        email: email.toLowerCase(),
         password: hashedPassword
     });
 
