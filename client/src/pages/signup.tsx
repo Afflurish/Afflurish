@@ -65,13 +65,13 @@ function Signup() {
         </Head>
         <Flex className="h-4/5" justifyContent="center" alignItems="center">
             <Box className="w-1/4">
-                
-
+                <AnimatePresence key="signup-ap" mode="wait">
                 {
                     isSigningUp ?
                     <LottieLoading animationKey="signup-loading" height={400} width={400} /> :
                     renderForm()
                 }
+                </AnimatePresence>
             </Box>
         </Flex>
         </React.Fragment>

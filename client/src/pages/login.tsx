@@ -71,7 +71,7 @@ function Login() {
         </Head>
         <Flex className="h-4/5" justifyContent="center" alignItems="center">
             <Box className="w-1/4">
-                <AnimatePresence mode="wait">
+                <AnimatePresence key="login-ap" mode="wait">
                     {
                         isLoggingIn ? 
                         <LottieLoading animationKey="login-loading" height={400} width={400} /> : 

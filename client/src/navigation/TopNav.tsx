@@ -81,7 +81,7 @@ function TopNav({ router }: TopNavProps) {
                         </div>
                     </div>
             </Navbar>
-            <AnimatePresence mode="wait">
+            <AnimatePresence key="topNav-ap" mode="wait">
                 {isMobileOpen && <MobileNav router={router} routes={_DashboardRoutes} isOpen={isMobileOpen} setIsOpen={setIsMobileOpen} />}
             </AnimatePresence>
         </div>
