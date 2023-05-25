@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { Button } from 'flowbite-react';
+import Button from '../Button';
 
 function GoToDashboardButton() {
     return(
         <Link href="/dashboard">
-            <Button gradientDuoTone="greenToBlue" size="sm">
+            <Button color="gradient">
                 Go To Dashboard
             </Button>
         </Link>
