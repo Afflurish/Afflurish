@@ -1,6 +1,6 @@
-import type { UserState } from '../store/authSlice';
-import { ENV } from '../constants';
-import { apiRequests } from '../utils';
+import type { UserState } from '../../store/authSlice';
+import { ENV } from '../../constants';
+import { apiRequests } from '../../utils';
 
 const baseEndpoint = ENV.API_URL + "/auth";
 
