@@ -42,12 +42,12 @@ function NavBar({ user, router }: NavBarProps) {
         return(
             <Flex>
                 <Link href="/login">
-                    <Button className="mx-1 w-24" gradientDuoTone="greenToBlue">
+                    <Button color="gradient" className="mx-1 w-24">
                         Login
                     </Button>
                 </Link>
                 <Link href="/signup">
-                    <Button outline className="mx-1 w-24" gradientDuoTone="greenToBlue">
+                    <Button outlined color="gradient" className="mx-1 w-24">
                         Signup
                     </Button>
                 </Link>
@@ -86,7 +86,7 @@ function NavBar({ user, router }: NavBarProps) {
                     </Box>
                 </Flex>
             </Navbar>
-            <AnimatePresence mode="wait">
+            <AnimatePresence key="navbar-ap" mode="wait">
                 {
                     isMobileOpen && 
                     <MobileNav router={router} routes={_HomeRoutes} isOpen={isMobileOpen} setIsOpen={setIsMobileOpen}>

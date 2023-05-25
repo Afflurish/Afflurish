@@ -65,7 +65,7 @@ function SignupForm({ onSubmit }: SignupFormProps) {
                     />
                 </div>
                 <div className="mb-5 mt-10">
-                    <Button type="submit" disabled={isSubmitting} loading={isSubmitting} gradientDuoTone="greenToBlue" className="w-full uppercase font-semibold">
+                    <Button type="submit" disabled={isSubmitting} loading={isSubmitting} color="gradient" className="w-full uppercase">
                         Signup
                     </Button>
                 </div>
