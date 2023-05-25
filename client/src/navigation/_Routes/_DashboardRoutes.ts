@@ -2,9 +2,11 @@ import type { Route } from '../../types/routes';
 import { 
     faGaugeHigh, 
     faChartSimple,
-    faFileInvoiceDollar,
     faMoneyBill,
-    faCogs
+    faMoneyBillTransfer,
+    faCogs,
+    faScaleBalanced,
+    faSackDollar
 } from '@fortawesome/free-solid-svg-icons';
 
 const _DashboardRoutes: Route[] = [
@@ -21,9 +23,21 @@ const _DashboardRoutes: Route[] = [
         displayNav: true
     },
     {
+        title: "Budget",
+        path: "/budget",
+        faIcon: faScaleBalanced,
+        displayNav: true,
+    },
+    {
+        title: "Income",
+        path: "/income",
+        faIcon: faSackDollar,
+        displayNav: true
+    },
+    {
         title: "Expenses",
         path: "/expenses",
-        faIcon: faFileInvoiceDollar,
+        faIcon: faMoneyBillTransfer,
         displayNav: true
     },
     {
