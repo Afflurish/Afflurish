@@ -7,6 +7,8 @@ import { AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+/* Redux */
+import { store } from '../store';
 import type { UserState } from '../store/authSlice';
 
 import { _HomeRoutes } from './_Routes';
@@ -23,6 +25,7 @@ interface NavBarProps {
 
 function NavBar({ user, router }: NavBarProps) {
 
+    const theme = store.getState().theme;
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     const renderRoutes = () => {
@@ -57,7 +60,17 @@ function NavBar({ user, router }: NavBarProps) {
 
     return(
         <div className="w-full">
-            <Navbar theme={{ base: "border-gray-200 bg-neutral-800 px-2 py-2.5 sm:px-4 rounded first:relative first:z-50" }} fluid={true} rounded={true}>
+            <Navbar 
+                theme={{ 
+                    base: `
+                        ${theme.tailwind.background}
+                        fixed
+                        px-2 py-2.5 sm:px-4 rounded first:relative first:z-50
+                    ` 
+                }} 
+                fluid 
+                rounded
+            >
                 <Flex className="w-full" alignItems="center" alignContent="center">
                     <Box flex="1 1 auto">
                         <Link href="/" className="flex items-center">
