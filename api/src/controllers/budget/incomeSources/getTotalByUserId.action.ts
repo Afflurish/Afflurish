@@ -1,12 +1,13 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { Request, AuthenticatedResponse, NextFunction } from '@@types/express.js';
 
-import { IncomeSource } from '../../../entities/index.js';
+import { IncomeSource } from '@@entities/index.js';
 
-import { entities, errors } from '../../../utils/index.js';
+import { entities, errors } from '@@utils/index.js';
 
-async function getTotalByUserId(req: Request, res: Response, next: NextFunction) {
+async function getTotalByUserId(req: Request, res: AuthenticatedResponse, next: NextFunction) {
+
     const { id } = req.params;
-    const user = res.locals.auth;
+    const { user } = res.locals.auth;
 
     if(!id || id !== user.id) {
         return errors.sendResponse({ res, status: 401, message: "Unauthorized" });
