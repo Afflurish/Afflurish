@@ -1,21 +1,19 @@
 import { Response } from 'express';
 import JWT from 'jsonwebtoken';
 
-import { ENV } from '../constants/index.js';
-import { AuthPayload } from '../types/auth.js';
+import { ENV } from '@@constants/index.js';
+import type { AuthUser, AuthPayload } from '@@types/auth.js';
 
-interface Payload extends AuthPayload {
-
-};
-
-async function issueToken(res: Response, payload: Payload) {
+async function issueToken(res: Response, user: AuthUser) {
     const options = {
         expiresIn: "12h"
     };
 
-    const token = JWT.sign(payload, ENV.JWT_TOKEN, options);
-
-    payload.token = token;
+    const token = JWT.sign(user, ENV.JWT_TOKEN, options);
+    const payload: AuthPayload = {
+        user,
+        token
+    };
 
     return res.json({ results: payload });
 };
