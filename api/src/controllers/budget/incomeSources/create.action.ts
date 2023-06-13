@@ -1,23 +1,27 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { Request, AuthenticatedResponse, NextFunction } from '@@types/express.js';
 
-import { IncomeSource } from '../../../entities/index.js';
+import { IncomeSource } from '@@entities/index.js';
 
-import { entities, errors } from '../../../utils/index.js';
+import { entities, errors } from '@@utils/index.js';
 
 export interface Body {
     label?: string,
     amount?: number
 };
 
-async function create(req: Request, res: Response, next: NextFunction) {
-    const { label, amount }: Body = req.body;
+async function create(req: Request<Body>, res: AuthenticatedResponse, next: NextFunction) {
+
+    const { user } = res.locals.auth;
+    const { label, amount } = req.body;
 
     if(!label || !amount) {
         return errors.sendResponse({ res, status: 400, message: "Invalid Body" });
     }
 
     const [incomeSource, err] = await entities.insert<IncomeSource>(IncomeSource, {
-        user: res.locals.auth.id,
+        user: { 
+            id: user.id
+        },
         label,
         amount
     });
