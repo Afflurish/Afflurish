@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import JWT from 'jsonwebtoken';
 
-import { ENV } from '../constants/index.js';
-import { errors } from '../utils/index.js';
+import { ENV } from '@@constants/index.js';
+import { errors } from '@@utils/index.js';
 
-import { AuthPayload } from '../types/auth.js';
+import type { AuthPayload } from '@@types/auth.js';
 
 async function verifyToken(req: Request, res: Response, next: NextFunction) {
     const bearerHeader = req.headers['authorization'];
