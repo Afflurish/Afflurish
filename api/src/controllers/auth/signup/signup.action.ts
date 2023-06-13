@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from '@@types/express.js';
 import bcrypt from 'bcrypt';
 
-import { User } from '../../../entities/index.js';
+import { User } from '@@entities/index.js';
 
-import { entities, errors } from '../../../utils/index.js';
+import { entities, errors } from '@@utils/index.js';
 
 export interface SignupBody {
     email?: string,
