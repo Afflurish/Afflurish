@@ -1,15 +1,19 @@
-import type { Request, Response, NextFunction } from 'express';
-
-import { IncomeSource } from '../../../entities/index.js';
-
-import { entities, pagination, errors } from '../../../utils/index.js';
+import type { Request, APResponse, NextFunction } from '@@types/express.js';
 import { FindOneOptions } from 'typeorm';
 
-async function getByUserId(req: Request, res: Response, next: NextFunction) {
+import { IncomeSource } from '@@entities/index.js';
+
+import { entities, pagination, errors } from '@@utils/index.js';
+
+interface Params {
+    id?: string
+};
+
+async function getByUserId(req: Request<any, Params>, res: APResponse, next: NextFunction) {
     const { id } = req.params;
 
-    const { limit, offset } = res.locals;
-    const user = res.locals.auth;
+    const { limit, offset } = res.locals.pagination;
+    const { user } = res.locals.auth;
 
     if(!id || id !== user.id) {
         return errors.sendResponse({ res, status: 401, message: "Unauthorized" });
