@@ -80,7 +80,7 @@ async function index(req: Request, res: Response, next: NextFunction) {
         return errors.sendResponse({ res, status: 404, message: "No Users found" });
     }
 
-    const response: PaginatedResponse<Fortune> = pagination.paginateResponse<Fortune>(req, res, fortunes);
+    const response: PaginatedResults<Fortune> = pagination.paginateResponse<Fortune>(req, res, fortunes);
 
     return res.json(response);
 };
