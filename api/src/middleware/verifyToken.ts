@@ -1,10 +1,15 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from '@@types/express.js';
 import JWT from 'jsonwebtoken';
 
 import { ENV } from '@@constants/index.js';
 import { errors } from '@@utils/index.js';
 
-import type { AuthPayload } from '@@types/auth.js';
+import type { AuthUser } from '@@types/auth.js';
+
+export interface JWTAuthData extends AuthUser {
+    iat: number,
+    exp: number
+};
 
 async function verifyToken(req: Request, res: Response, next: NextFunction) {
     const bearerHeader = req.headers['authorization'];
@@ -35,7 +40,16 @@ async function verifyToken(req: Request, res: Response, next: NextFunction) {
             };
         }
 
-        res.locals.auth = authData as AuthPayload;
+        const { id, display_name, email } = authData as JWTAuthData;
+
+        res.locals.auth = {
+            user: {
+                id,
+                display_name,
+                email
+            },
+            token: bearerToken
+        };
 
         return next();
     });
