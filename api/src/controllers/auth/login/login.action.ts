@@ -1,19 +1,19 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from '@@types/express.js';
 import bcrypt from 'bcrypt';
 
-import { User } from '../../../entities/index.js';
-import { issueToken } from '../../../middleware/index.js';
+import { User } from '@@entities/index.js';
+import { issueToken } from '@@middleware/index.js';
 
-import { entities, errors } from '../../../utils/index.js';
+import { entities, errors } from '@@utils/index.js';
 
-export interface LoginBody {
+export interface Body {
     email?: string,
     password?: string
 };
 
-async function login(req: Request, res: Response, next: NextFunction) {
+async function login(req: Request<Body>, res: Response, next: NextFunction) {
 
-    const { email, password }: LoginBody = req.body;
+    const { email, password } = req.body;
 
     if(!email || !password) {
         return errors.sendResponse({ res, status: 400, message: "Invalid Request" });
