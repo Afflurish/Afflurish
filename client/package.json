@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "reset:npm": "rm -rf node_modules/ && yarn install"
+    "reset:npm": "rm -rf node_modules/ && yarn install",
+    "clear:cache": "rm -rf .next/ && rm -rf .yarn/ && rm -rf && rm -rf node_modules/ && yarn install"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
