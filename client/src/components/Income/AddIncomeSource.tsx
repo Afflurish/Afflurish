@@ -5,7 +5,7 @@ import type { IncomeFormValues, IncomeFormHelpers } from '../Forms/IncomeForm';
 
 /* Redux */
 import { store } from '../../store';
-import type { UserState } from '../../store/authSlice';
+import type { AuthState } from '../../store/authSlice';
 
 import { IncomeForm } from '../Forms';
 import { Button } from '../Common';
@@ -19,7 +19,7 @@ export interface IncomeSourceProps {
 
 function AddIncomeSource({ getIncomeSources }: IncomeSourceProps) {
 
-    const user = store.getState().auth.user;
+    const auth = store.getState().auth as AuthState;
     const [displayForm, toggleDisplayForm] = useToggle();
 
     const onSubmit = async (values: IncomeFormValues, helpers: IncomeFormHelpers) => {
@@ -31,7 +31,7 @@ function AddIncomeSource({ getIncomeSources }: IncomeSourceProps) {
             return helpers.setFieldError("amount", "Invalid Number");
         }
 
-        const [res, err] = await api.incomeSources.create(user as UserState, { 
+        const [res, err] = await api.incomeSources.create(auth, { 
             label, 
             amount: parsedAmount 
         });
@@ -49,14 +49,17 @@ function AddIncomeSource({ getIncomeSources }: IncomeSourceProps) {
             <motion.div 
                 key="incomeSource-form"
                 initial={{ opacity: 0, y: "-2vh" }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: "-2vh" }}
-                transition={{
-                    type: "spring",
-                    damping: 10,
-                    mass: 0.75,
-                    stiffness: 100,
+                animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: {
+                        type: "spring",
+                        damping: 10,
+                        mass: 0.75,
+                        stiffness: 100,
+                    }
                 }}
+                exit={{ opacity: 0, y: "-2vh" }}
             >
                 <IncomeForm onSubmit={onSubmit} />
             </motion.div>

@@ -26,6 +26,8 @@ export interface TopNavProps {
 
 function TopNav({ router }: TopNavProps) {
 
+    const user = store.getState().auth.user;
+    console.log(user);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     const handleLogout = () => {
@@ -59,10 +61,10 @@ function TopNav({ router }: TopNavProps) {
                         >
                         <Dropdown.Header>
                             <span className="block text-sm">
-                                Bonnie Green
+                                {user?.display_name}
                             </span>
                             <span className="block truncate text-sm font-medium">
-                                name@flowbite.com
+                                {user?.email}
                             </span>
                         </Dropdown.Header>
                         <Dropdown.Item>

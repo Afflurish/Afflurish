@@ -7,7 +7,7 @@ import { AddIncomeSource, IncomeSourceList } from '../components/Income';
 
 /* Redux */
 import { store } from '../store';
-import { UserState } from '../store/authSlice';
+import { AuthState } from '../store/authSlice';
 
 import * as api from '../api';
 import type { IncomeSource } from '../api/budget/incomeSources';
@@ -15,12 +15,12 @@ import type { ApiPaginatedResponse, ApiResponse } from '../types/api';
 
 function Income() {
 
-    const user = store.getState().auth.user as UserState;
+    const auth = store.getState().auth as AuthState;
     const [incomeSources, setIncomeSources]: [ApiPaginatedResponse<IncomeSource> | undefined, Function] = useState(undefined);
     const [incomeTotal, setIncomeTotal]: [ApiResponse<{ total: number }> | undefined, Function] = useState(undefined);
 
     const getIncomeSources = async (page?: number) => {
-        const [res, err] = await api.incomeSources.getByUserId(user, {
+        const [res, err] = await api.incomeSources.getByUserId(auth, {
             page: page
         });
 
@@ -32,7 +32,7 @@ function Income() {
     };
 
     const getIncomeTotal = async () => {
-        const [res, err] = await api.incomeSources.getTotalByUserId(user);
+        const [res, err] = await api.incomeSources.getTotalByUserId(auth);
 
         if(err || !res) {
             return;
