@@ -2,13 +2,12 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 
 import React from 'react';
-import { AnimatePresence } from 'framer-motion';
 
 import Navigation from '../navigation';
 
 function App({ Component, pageProps }: AppProps) {
     return(
-        <AnimatePresence key="app-ap" mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+        <React.Fragment>
             <style global jsx>
                 {`
                     html,
@@ -23,7 +22,7 @@ function App({ Component, pageProps }: AppProps) {
                 `}
             </style>
             <Navigation Component={Component} {...pageProps} />
-        </AnimatePresence>
+        </React.Fragment>
     );
 };
 
